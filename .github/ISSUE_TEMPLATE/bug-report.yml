@@ -1,0 +1,78 @@
+name: Bug report
+description: Reproducible defect or regression.
+title: "[Bug] "
+type: Bug
+projects: ["Subconscious-ai/6"]
+body:
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      description: What is happening now?
+      placeholder: "When I..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What should happen instead?
+      placeholder: "I expected..."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include exact commands, inputs, URLs, accounts, or fixtures.
+      placeholder: |
+        1. Go to...
+        2. Run...
+        3. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Logs, screenshots, traces, stack traces, or failing test output.
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser, app version, branch, commit, or deployment.
+      placeholder: "- OS/browser/version:"
+    validations:
+      required: true
+  - type: input
+    id: exit-criterion
+    attributes:
+      label: Exit criterion
+      description: One shell command or reproducible check that fails before the fix and passes after.
+      placeholder: "pnpm test -- --run bug-123"
+    validations:
+      required: true
+  - type: dropdown
+    id: roadmap-priority
+    attributes:
+      label: Roadmap priority
+      options:
+        - High
+        - Med
+        - Low
+    validations:
+      required: true
+  - type: dropdown
+    id: squad
+    attributes:
+      label: Squad
+      options:
+        - Frontend
+        - Backend
+        - Research
+        - Growth
+    validations:
+      required: true

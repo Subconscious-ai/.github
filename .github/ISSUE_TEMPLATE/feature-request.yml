@@ -1,0 +1,89 @@
+name: Feature request
+description: Product capability, user workflow, or visible improvement.
+title: "[Feature] "
+type: Feature
+projects: ["Subconscious-ai/6"]
+body:
+  - type: input
+    id: outcome
+    attributes:
+      label: Outcome
+      description: One sentence describing the user-visible result.
+      placeholder: "Users can..."
+    validations:
+      required: true
+  - type: textarea
+    id: users
+    attributes:
+      label: Users and context
+      description: Who needs this, when, and why now?
+      placeholder: "- User/persona:\n- Current workaround:\n- Why now:"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Observable behavior that must be true before this ships.
+      placeholder: |
+        - Given...
+        - When...
+        - Then...
+    validations:
+      required: true
+  - type: input
+    id: exit-criterion
+    attributes:
+      label: Exit criterion
+      description: One shell command that returns 0 when the implementation is done.
+      placeholder: "pnpm test && pnpm run typecheck"
+    validations:
+      required: true
+  - type: textarea
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Human-owned dashboard, credential, config, or access tasks required first.
+      placeholder: "- None"
+    validations:
+      required: true
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-goals
+      description: Explicitly list what should not be included.
+      placeholder: "- Do not..."
+    validations:
+      required: true
+  - type: dropdown
+    id: roadmap-priority
+    attributes:
+      label: Roadmap priority
+      options:
+        - High
+        - Med
+        - Low
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size
+      description: Large work must be broken into sub-issues before execution.
+      options:
+        - Small
+        - Med
+        - Large
+    validations:
+      required: true
+  - type: dropdown
+    id: squad
+    attributes:
+      label: Squad
+      options:
+        - Frontend
+        - Backend
+        - Research
+        - Growth
+    validations:
+      required: true
