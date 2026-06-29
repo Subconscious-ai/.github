@@ -1,0 +1,32 @@
+name: Sync Roadmap fields
+
+on:
+  workflow_call:
+    inputs:
+      repository:
+        required: true
+        type: string
+      issue_number:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout workflow assets
+        uses: actions/checkout@v4
+        with:
+          repository: Subconscious-ai/.github
+          ref: main
+
+      - name: Sync issue-form answers to Roadmap fields
+        env:
+          GH_TOKEN: ${{ secrets.ROADMAP_PROJECT_TOKEN || github.token }}
+          REPOSITORY: ${{ inputs.repository }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+        run: node scripts/sync-roadmap-fields.mjs
