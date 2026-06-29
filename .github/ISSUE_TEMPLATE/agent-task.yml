@@ -1,0 +1,99 @@
+name: Agent-ready task
+description: Scoped implementation work for coding agents.
+title: "[Task] "
+type: Task
+projects: ["Subconscious-ai/6"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when the issue should be executable by a coding agent.
+  - type: input
+    id: job
+    attributes:
+      label: Job
+      description: One sentence describing the user-visible outcome. Split the issue if this needs "and".
+      placeholder: "Users can..."
+    validations:
+      required: true
+  - type: input
+    id: exit-criterion
+    attributes:
+      label: Exit criterion
+      description: One shell command that returns 0 when the job is done.
+      placeholder: "pnpm test -- --run issue-123"
+    validations:
+      required: true
+  - type: textarea
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Human-owned dashboard, credential, config, or access tasks required before the exit criterion can pass.
+      placeholder: "- None"
+    validations:
+      required: true
+  - type: textarea
+    id: files-in-scope
+    attributes:
+      label: Files in scope
+      description: Repo-relative paths that may be edited.
+      placeholder: |
+        - src/...
+        - tests/...
+    validations:
+      required: true
+  - type: textarea
+    id: reuse-first
+    attributes:
+      label: Reuse first
+      description: Existing functions, libraries, configs, or prior work to check before implementing.
+      placeholder: "- Existing helper or library name"
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: Explicit do-not-touch list.
+      value: "- Do not edit the primary checkout; worktree first."
+    validations:
+      required: true
+  - type: dropdown
+    id: roadmap-priority
+    attributes:
+      label: Roadmap priority
+      options:
+        - High
+        - Med
+        - Low
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size
+      description: Large work must be broken into sub-issues before execution.
+      options:
+        - Small
+        - Med
+        - Large
+    validations:
+      required: true
+  - type: dropdown
+    id: squad
+    attributes:
+      label: Squad
+      options:
+        - Frontend
+        - Backend
+        - Research
+        - Growth
+    validations:
+      required: true
+  - type: checkboxes
+    id: agent-ready-check
+    attributes:
+      label: Agent readiness
+      options:
+        - label: The job is one deliverable, the exit criterion is runnable, and prerequisites are explicit.
+          required: true
