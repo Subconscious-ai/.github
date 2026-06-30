@@ -55,24 +55,3 @@ body:
       placeholder: "pnpm test -- --run bug-123"
     validations:
       required: true
-  - type: dropdown
-    id: roadmap-priority
-    attributes:
-      label: Roadmap priority
-      options:
-        - High
-        - Med
-        - Low
-    validations:
-      required: true
-  - type: dropdown
-    id: squad
-    attributes:
-      label: Squad
-      options:
-        - Frontend
-        - Backend
-        - Research
-        - Growth
-    validations:
-      required: true
