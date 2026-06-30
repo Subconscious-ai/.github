@@ -55,35 +55,3 @@ body:
       placeholder: "- Do not..."
     validations:
       required: true
-  - type: dropdown
-    id: roadmap-priority
-    attributes:
-      label: Roadmap priority
-      options:
-        - High
-        - Med
-        - Low
-    validations:
-      required: true
-  - type: dropdown
-    id: size
-    attributes:
-      label: Size
-      description: Large work must be broken into sub-issues before execution.
-      options:
-        - Small
-        - Med
-        - Large
-    validations:
-      required: true
-  - type: dropdown
-    id: squad
-    attributes:
-      label: Squad
-      options:
-        - Frontend
-        - Backend
-        - Research
-        - Growth
-    validations:
-      required: true
