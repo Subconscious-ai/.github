@@ -8,6 +8,11 @@ body:
     attributes:
       value: |
         Use this form when the issue should be executable by a coding agent.
+
+        **A completed form is standing authorization** — execute straight through
+        to a PR, no check-ins. Anything that surfaces mid-run is a **park**:
+        comment here with what you tried and the one decision needed, label
+        `blocked-human`, move to the next thing. Never a question in chat.
   - type: input
     id: job
     attributes:
@@ -30,6 +35,18 @@ body:
       label: Prerequisites
       description: Human-owned dashboard, credential, config, or access tasks required before the exit criterion can pass.
       placeholder: "- None"
+    validations:
+      required: true
+  - type: textarea
+    id: standing-check
+    attributes:
+      label: The check that runs without a human
+      description: |
+        Which existing gate proves this is still true tomorrow — or what new check
+        ships with it. A run continues only as long as it can verify itself, so an
+        exit criterion that only passes while someone watches is not enough.
+        "Manual QA" is not an answer.
+      placeholder: "Covered by the layer gate in the uptime probe; regression shows within 30 min."
     validations:
       required: true
   - type: textarea
@@ -58,6 +75,36 @@ body:
       value: "- Do not edit the primary checkout; worktree first."
     validations:
       required: true
+  - type: input
+    id: undo
+    attributes:
+      label: How this is undone
+      description: One line. If the honest answer is "it cannot be", say so — that changes who may run it unattended and when.
+      placeholder: "Revert the PR and redeploy; nothing published, no variables flipped."
+    validations:
+      required: true
+  - type: dropdown
+    id: autonomy
+    attributes:
+      label: Autonomy
+      description: Say this up front so nobody has to infer it at 2am.
+      options:
+        - Standing authorization — execute to merged PR and deploy
+        - Execute to draft PR, a human merges
+        - Needs a human decision before starting
+    validations:
+      required: true
+  - type: checkboxes
+    id: delegation
+    attributes:
+      label: Delegation and pacing
+      description: |
+        Claude Code declines subagents unless the requester asks for them — that
+        instruction ships in the client, not in any repo, so ticking this box is
+        the durable form of the request.
+      options:
+        - label: Subagents allowed — fan out, each with its own stop condition, and monitor them
+        - label: Long-running — drive with /loop rather than one sitting
   - type: checkboxes
     id: agent-ready-check
     attributes:
