@@ -19,7 +19,17 @@ gh api repos/Subconscious-ai/.github/issues/<number> --jq '.type.name'
 ```
 
 Use `Bug` or `Feature` for those types. Verify the body and type before agent handoff.
-For root instructions requiring a Roadmap project, use the existing organization Roadmap and its field ownership.
+Also preserve the issue form's project metadata. The organization forms require project `Subconscious-ai/6`.
+CLI issue creation does not apply that form metadata automatically:
+
+```bash
+gh project item-add 6 --owner Subconscious-ai --url https://github.com/Subconscious-ai/.github/issues/<number>
+gh project view 6 --owner Subconscious-ai --format json --jq .title
+gh issue view <number> --repo Subconscious-ai/.github --json projectItems
+```
+
+Verify that `projectItems` includes the project title returned above before agent handoff.
+Use the existing Roadmap's field ownership; keep repository-specific project requirements from the selected form.
 Do not create a second status tracker. Existing Linear references remain in Linear; link them when relevant.
 
 ## Read and maintain issues
